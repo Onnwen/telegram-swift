@@ -7826,7 +7826,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                allOf:
+                                anyOf:
                                     -
                                         $ref: '#/components/schemas/Success'
                                     -
@@ -8873,7 +8873,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                allOf:
+                                anyOf:
                                     -
                                         $ref: '#/components/schemas/Success'
                                     -
@@ -8954,7 +8954,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                allOf:
+                                anyOf:
                                     -
                                         $ref: '#/components/schemas/Success'
                                     -
