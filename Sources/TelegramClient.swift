@@ -124,6 +124,42 @@ public final class TelegramClient: Sendable {
             throw TelegramError.serverError(statusCode: statusCode, description: (try? response.body.json.value2.description) ?? "")
         }
     }
+    
+    @discardableResult
+    public func setWebhook(_ body: Operations.post_sol_setWebhook.Input.Body.jsonPayload) async throws -> Bool {
+        let output = try await client.post_sol_setWebhook(
+            .init(
+                body: .json(
+                    body
+                )
+            )
+        )
+        
+        switch output {
+        case .ok(let response):
+            guard let body = try? response.body.json else {
+                throw TelegramError.failedToParseResponse
+            }
+            
+            return body.value1.value1.ok
+        case .badRequest(let response):
+            throw TelegramError.badRequest(description: (try? response.body.json.value2.description) ?? "")
+        case .conflict(let response):
+            throw TelegramError.confliect(description: (try? response.body.json.value2.description) ?? "")
+        case .unauthorized(let response):
+            throw TelegramError.unauthorized(description: (try? response.body.json.value2.description) ?? "")
+        case .forbidden(let response):
+            throw TelegramError.forbidden(description: (try? response.body.json.value2.description) ?? "")
+        case .notFound(let response):
+            throw TelegramError.notFound(description: (try? response.body.json.value2.description) ?? "")
+        case .tooManyRequests(let response):
+            throw TelegramError.tooManyRequests(description: (try? response.body.json.value2.description) ?? "")
+        case .serverError(statusCode: let statusCode, let response):
+            throw TelegramError.serverError(statusCode: statusCode, description: (try? response.body.json.value2.description) ?? "")
+        case .default(statusCode: let statusCode, let response):
+            throw TelegramError.serverError(statusCode: statusCode, description: (try? response.body.json.value2.description) ?? "")
+        }
+    }
 
     enum TelegramError: Error {
         case badRequest(description: String)
