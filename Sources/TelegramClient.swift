@@ -28,12 +28,8 @@ public final class TelegramClient: Sendable {
         )
         
         switch output {
-        case .ok(let response):
-            guard let body = try? response.body.json else {
-                throw TelegramError.failedToParseResponse
-            }
-            
-            return body.value1.value1.ok
+        case .ok:
+            return true
         case .badRequest(let response):
             throw TelegramError.badRequest(description: (try? response.body.json.value2.description) ?? "")
         case .conflict(let response):
@@ -64,12 +60,8 @@ public final class TelegramClient: Sendable {
         )
         
         switch output {
-        case .ok(let response):
-            guard let body = try? response.body.json else {
-                throw TelegramError.failedToParseResponse
-            }
-            
-            return body.value1.value1.ok
+        case .ok:
+            return true
         case .badRequest(let response):
             throw TelegramError.badRequest(description: (try? response.body.json.value2.description) ?? "")
         case .conflict(let response):
@@ -100,12 +92,8 @@ public final class TelegramClient: Sendable {
         )
         
         switch output {
-        case .ok(let response):
-            guard let body = try? response.body.json else {
-                throw TelegramError.failedToParseResponse
-            }
-            
-            return body.value1.value1.ok
+        case .ok:
+            return true
         case .badRequest(let response):
             throw TelegramError.badRequest(description: (try? response.body.json.value2.description) ?? "")
         case .conflict(let response):
@@ -136,12 +124,8 @@ public final class TelegramClient: Sendable {
         )
         
         switch output {
-        case .ok(let response):
-            guard let body = try? response.body.json else {
-                throw TelegramError.failedToParseResponse
-            }
-            
-            return body.value1.value1.ok
+        case .ok:
+            return true
         case .badRequest(let response):
             throw TelegramError.badRequest(description: (try? response.body.json.value2.description) ?? "")
         case .conflict(let response):
@@ -172,12 +156,8 @@ public final class TelegramClient: Sendable {
         )
         
         switch output {
-        case .ok(let response):
-            guard let body = try? response.body.json else {
-                throw TelegramError.failedToParseResponse
-            }
-            
-            return body.value1.value1.ok
+        case .ok:
+            return true
         case .badRequest(let response):
             throw TelegramError.badRequest(description: (try? response.body.json.value2.description) ?? "")
         case .conflict(let response):
