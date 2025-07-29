@@ -183,8 +183,8 @@ public final class TelegramClient: Sendable {
         
         switch output {
         case .ok(let response):
-            guard let result = try? response.body.json.value2.result else { return false }
-            return result.value1 != nil || result.value2 != nil || result.value3 != nil || result.value4 != nil
+            guard let member = try? response.body.json.value2.result?.value3 else { return false }
+            return ["creator", "administrator", "member", "restricted"].contains(member.status)
         case .badRequest(let response):
             throw TelegramError.badRequest(description: (try? response.body.json.value2.description) ?? "")
         case .conflict(let response):
